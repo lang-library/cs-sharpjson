@@ -189,10 +189,12 @@ public class SharpJson : DynamicObject
         }
     }
 
+#if false
     public JsonType GetJsonType()
     {
         return GetJsonType(this);
     }
+#endif
 
     public static JsonType GetJsonType(object obj)
     {

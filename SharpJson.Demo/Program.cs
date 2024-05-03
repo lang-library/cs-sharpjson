@@ -57,20 +57,23 @@ static class Program
         Echo(s3);
         var d = SharpJson.FromObject(cls);
         Echo(d, "d");
-        Echo(d.GetJsonType());
-        Echo(d.GetJsonType().ToString());
-        Echo(d.GetJsonType() == JsonType.@object);
+        Echo(GetJsonType(d));
+        Echo(GetJsonType(d).ToString());
+        Echo(GetJsonType(d) == JsonType.@object);
         var cls2 = SharpJson.FromJson(@"{ ""ABC"":777}").ToObject<MyClass>();
         Echo(cls2, "cls2");
         SharpJson.SetShowDetail(true);
         //var dyn2 = SharpJson.FromObject(12345.67);
         var dyn2 = SharpJson.FromObject(12345678901234567890123456789m);
         Echo(FullName(dyn2));
+        Echo(GetJsonType(dyn2));
+        //Echo(Convert.ChangeType(dyn2, typeof(long)));
         string json = ToJson(dyn2);
         Echo(json, "json");
         Assert.Equal("12345678901234567890123456789", json);
         var dyn3 = SharpJson.FromJson("[11, 22, 33]");
         Echo(dyn3.Count, "dyn3.Count");
+        Echo((int[])dyn3);
         foreach(var e3 in dyn3)
         {
             Echo(e3, "e3");
@@ -83,8 +86,30 @@ static class Program
         }
         foreach (var e4 in dyn4)
         {
+            Echo(e4);
             Echo(e4.Key);
             Echo(e4.Value);
+        }
+        dynamic dec1 = 123m;
+        Echo(Convert.ChangeType(dec1, typeof(sbyte)));
+        switch(GetJsonType(dec1))
+        {
+            case JsonType.@array:
+                Echo("@array");
+                break;
+            case JsonType.@object:
+                Echo("@object");
+                break;
+            case JsonType.@number:
+                Echo("@number");
+                Echo(Convert.ChangeType(dec1, typeof(double)));
+                break;
+            case JsonType.@string:
+                Echo("@string");
+                break;
+            case JsonType.@null:
+                Echo("@null");
+                break;
         }
     }
 }
