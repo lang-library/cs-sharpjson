@@ -39,6 +39,7 @@ public class JsonBuilder
             sb.Append('"');
             sb.Append(Escape(str));
             sb.Append('"');
+            return;
         }
         else if (type == typeof(byte) || type == typeof(sbyte))
         {
