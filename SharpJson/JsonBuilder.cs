@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Xml.Linq;
 
-namespace Globals;
+namespace Global;
 
 public class JsonBuilder
 {

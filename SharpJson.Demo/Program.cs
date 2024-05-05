@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Dynamic;
-using Globals;
+using Global;
 using Xunit;
-using static Globals.SharpJson;
+using static Global.SharpJson;
 namespace Main;
 
 

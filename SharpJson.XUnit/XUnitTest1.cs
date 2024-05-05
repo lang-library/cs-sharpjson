@@ -1,5 +1,5 @@
-﻿using Globals;
-//using static Globals.SharpJson;
+﻿using Global;
+//using static Global.SharpJson;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -34,7 +34,7 @@ public class XUnitTest1
         Assert.False(o.IsArray);
         Assert.True(o.IsObject);
         Assert.Equal("""
-            <Globals.SharpJson> {
+            <Global.SharpJson> {
               "a": 123
             }
             """.Replace("\r\n", "\n"), SharpJson.ToPrintable(o));
